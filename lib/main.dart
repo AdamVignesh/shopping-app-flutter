@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping/Models/Item.dart';
 import 'package:shopping/Screens/Cart_Page.dart';
 
+import './Screens/Login_Page.dart';
 import './Screens/Item_Detail.dart';
 import './Screens/Cart_Page.dart';
 import './Widgets/Item_Widget.dart';
@@ -26,7 +28,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "CarTex",
       routes: {
-        "/":(context)=> HomePage(),
+        "/":(context)=> LoginPage(),
+        "/Home":(context) => HomePage(),
         "/Item_Detail":(context) => Item_Detail(),
         "/Cart_Page":(context)=>Cart_Page(),
       },
@@ -55,6 +58,15 @@ class _HomePageState extends State<HomePage> {
                 ElevatedButton.icon(
                     onPressed: (){ Navigator.pushNamed(context, "/Cart_Page");},
                     icon: Icon(Icons.shopping_cart),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    ),
+                    label: Text('')
+                ),
+                ElevatedButton.icon(
+                    onPressed: (){ GoogleSignIn().signOut();
+                    Navigator.pushNamed(context, "/");},
+                    icon: Icon(Icons.logout_outlined),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
                     ),
@@ -111,4 +123,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
 

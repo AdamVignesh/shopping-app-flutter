@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping/Models/Item.dart';
 import '../Providers/Cart_Provider.dart';
@@ -19,6 +20,18 @@ class _Cart_PageState extends State<Cart_Page> {
         title:Text('Cart'),
             centerTitle: true,
         backgroundColor: Colors.black,
+          actions: [
+          ElevatedButton.icon(
+          onPressed: (){ GoogleSignIn().signOut();
+            Navigator.pushNamed(context, "/");
+            },
+        icon: Icon(Icons.logout_outlined),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+        ),
+        label: Text('')
+      ),
+    ],
       ),
       body: Center(
         child:SingleChildScrollView(
